@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 class Btn extends StatelessWidget {
-  const Btn({Key? key}) : super(key: key);
+  final bool flag;
+  const Btn(this.flag, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    String txt = flag ? 'Log In' : 'Sign Up';
     return Container(
       height: 50,
       decoration: BoxDecoration(
@@ -13,10 +15,10 @@ class Btn extends StatelessWidget {
         onPressed: () {},
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             Text(
-              'Log In',
-              style: TextStyle(color: Colors.white, fontSize: 19),
+              txt,
+              style: const TextStyle(color: Colors.white, fontSize: 19),
             ),
           ],
         ),

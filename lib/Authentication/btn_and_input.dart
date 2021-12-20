@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:s_chat/Chat_Page/Chats.dart';
 
 class Btn extends StatelessWidget {
   const Btn({Key? key}) : super(key: key);
@@ -10,7 +11,12 @@ class Btn extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20), color: Colors.blue[900]),
       child: TextButton(
-        onPressed: () {},
+        onPressed: () {
+                      Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ChatDetailPage()),
+            );
+        },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [

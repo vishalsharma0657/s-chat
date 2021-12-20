@@ -14,7 +14,10 @@ class FriendsPage extends StatelessWidget {
         children: [
           const Text(
             'Add friend',
-            style: TextStyle(fontSize: 22, color: Colors.orange),
+            style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Colors.lightBlueAccent),
           ),
           Row(
             children: [
@@ -56,7 +59,7 @@ class FriendsPage extends StatelessWidget {
             style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Colors.lightGreen),
+                color: Colors.lightBlueAccent),
           ),
           Expanded(
             child: ListView.builder(

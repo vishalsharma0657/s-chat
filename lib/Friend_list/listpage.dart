@@ -26,21 +26,24 @@ class _ListPageState extends State<ListPage> {
           showElevation: false, // use this to remove appBar's elevation
           onItemSelected: (index) => setState(() {
             _selectedIndex = index;
-            const Duration(milliseconds: 100);
+            const Duration(microseconds: 50);
           }),
           items: [
             BottomNavyBarItem(
                 icon: const Icon(Icons.message),
                 title: const Text('Messages'),
+                inactiveColor: Colors.grey,
                 activeColor: Colors.blue),
             BottomNavyBarItem(
                 icon: const Icon(Icons.people),
                 title: const Text('Friends'),
-                activeColor: Colors.yellowAccent),
+                inactiveColor: Colors.grey,
+                activeColor: Colors.blue),
             BottomNavyBarItem(
                 icon: const Icon(Icons.person),
                 title: const Text('Account'),
-                activeColor: Colors.greenAccent),
+                inactiveColor: Colors.grey,
+                activeColor: Colors.blue),
           ],
         ));
   }

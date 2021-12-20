@@ -22,15 +22,15 @@ class AccountPage extends StatelessWidget {
             ),
             Text(
               'username',
-              style: TextStyle(fontSize: 22, color: Colors.orange),
+              style: TextStyle(fontSize: 22, color: Colors.white),
             ),
             Text(
               '+91-9876543210',
-              style: TextStyle(fontSize: 22, color: Colors.yellow),
+              style: TextStyle(fontSize: 22, color: Colors.white),
             ),
             Text(
               '0  friends',
-              style: TextStyle(fontSize: 22, color: Colors.lightGreen),
+              style: TextStyle(fontSize: 22, color: Colors.white),
             ),
           ],
         ),

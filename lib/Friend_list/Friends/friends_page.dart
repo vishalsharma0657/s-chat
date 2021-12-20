@@ -63,7 +63,7 @@ class FriendsPage extends StatelessWidget {
               padding: const EdgeInsets.all(0),
               itemCount: friends.length,
               itemBuilder: (context, index) {
-                return FriendBox(friends[index], (index % 7));
+                return FriendBox(friends[index]);
               },
             ),
           )

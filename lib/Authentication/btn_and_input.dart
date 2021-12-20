@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:s_chat/Friend_list/listpage.dart';
 
 class Btn extends StatelessWidget {
   final bool flag;
@@ -12,7 +13,12 @@ class Btn extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20), color: Colors.blue[900]),
       child: TextButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const ListPage()),
+          );
+        },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

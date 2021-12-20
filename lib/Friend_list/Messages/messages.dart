@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:s_chat/Friend_list/box.dart';
-import 'package:s_chat/Friend_list/dummy_name.dart';
+import 'package:s_chat/Friend_list/Messages/box.dart';
+import 'package:s_chat/Friend_list/Messages/dummy_name.dart';
 
 class Msgs extends StatelessWidget {
   const Msgs({Key? key}) : super(key: key);
@@ -36,7 +36,7 @@ class Msgs extends StatelessWidget {
             physics: const ClampingScrollPhysics(),
             itemCount: friends.length,
             itemBuilder: (context, index) {
-              return FriendBox(friends[index]);
+              return FriendBox(friends[index], (index % 7));
             },
           ),
         ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:s_chat/Friend_list/account_page.dart';
-import 'package:s_chat/Friend_list/friends_page.dart';
-import 'package:s_chat/Friend_list/messages.dart';
+import 'package:s_chat/Friend_list/Account/account_page.dart';
+import 'package:s_chat/Friend_list/Friends/friends_page.dart';
+import 'package:s_chat/Friend_list/Messages/messages.dart';
 
 class ListPage extends StatefulWidget {
   const ListPage({Key? key}) : super(key: key);

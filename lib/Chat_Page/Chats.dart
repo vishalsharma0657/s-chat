@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
-
+import 'package:s_chat/Chat_Page/mesaagechat.dart';
 class ChatDetailPage extends StatefulWidget{
   @override
   _ChatDetailPageState createState() => _ChatDetailPageState();
+ 
+
 }
+ List<ChatMessage> messages = [
+    ChatMessage(messageContent: "Hello, Nitesh", messageType: "receiver"),
+    ChatMessage(messageContent: "Tumse call kiye hue kitna din ho gaya", messageType: "receiver"),
+    ChatMessage(messageContent: "Hey Nitesh babu aisa mat bolo Hey Nitesh babu aisa mat bolo Hey Nitesh babu aisa mat bolo Hey Nitesh babu aisa mat bolo Hey Nitesh babu aisa mat bolo Hey Nitesh babu aisa mat bolo Hey Nitesh babu aisa mat bolo Hey Nitesh babu aisa mat bolo Hey Nitesh babu aisa mat bolo Hey Nitesh babu aisa mat bolo ", messageType: "sender"),
+    ChatMessage(messageContent: "ehhhh, doing OK.", messageType: "receiver"),
+    ChatMessage(messageContent: "Is there any thing wrong?", messageType: "sender"),
+  ];
 
 class _ChatDetailPageState extends State<ChatDetailPage> {
 
@@ -36,7 +45,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text("Kriss Benwat",style: TextStyle( fontSize: 16 ,fontWeight: FontWeight.w600),),
+                      const Text("VISHAL SHARMA",style: TextStyle( fontSize: 16 ,fontWeight: FontWeight.w600),),
                       SizedBox(height: 6,),
                       Text("Online",style: TextStyle(color: Colors.grey.shade600, fontSize: 13),),
                     ],
@@ -50,6 +59,30 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
       ),
      body: Stack(
         children: <Widget>[
+           ListView.builder(
+            itemCount: messages.length,
+            shrinkWrap: true,
+            padding: EdgeInsets.only(top: 10,bottom: 10),
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index){
+              return Container(
+                padding: const EdgeInsets.only(left: 16,right: 16,top: 10,bottom: 10),
+                 child: Align(
+        alignment: (messages[index].messageType == "receiver"?Alignment.topRight:Alignment.topLeft),
+        child: Container(
+        constraints: BoxConstraints(maxWidth: 250),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: (messages[index].messageType  == "receiver"?Colors.white:Colors.blue[200]),
+          ),
+          padding: EdgeInsets.all(16),
+                child: Text(messages[index].messageContent,style: TextStyle(color: Colors.black),),
+                
+             ),
+      ),
+    );
+  },
+),
           Align(
             alignment: Alignment.bottomLeft,
             child: Container(
@@ -99,4 +132,5 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
       ),
     );
   }
+  
 }

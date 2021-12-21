@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:s_chat/Chat_Page/Chats.dart';
+import 'package:s_chat/Friend_list/listpage.dart';
 
 class Btn extends StatelessWidget {
-  const Btn({Key? key}) : super(key: key);
+  final bool flag;
+  const Btn(this.flag, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    String txt = flag ? 'Log In' : 'Sign Up';
     return Container(
       height: 50,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20), color: Colors.blue[900]),
       child: TextButton(
         onPressed: () {
-                      Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => ChatDetailPage()),
-            );
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const ListPage()),
+          );
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             Text(
-              'Log In',
-              style: TextStyle(color: Colors.white, fontSize: 19),
+              txt,
+              style: const TextStyle(color: Colors.white, fontSize: 19),
             ),
           ],
         ),

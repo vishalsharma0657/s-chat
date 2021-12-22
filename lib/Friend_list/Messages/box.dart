@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:s_chat/Chat_Page/Chats.dart';
+import 'package:s_chat/Chat_Page/chats.dart';
 class FriendBox extends StatelessWidget {
   final String name;
   const FriendBox(this.name, {Key? key}) : super(key: key);
@@ -9,7 +9,7 @@ class FriendBox extends StatelessWidget {
     return GestureDetector(
        onTap: (){
         Navigator.push(context, MaterialPageRoute(builder: (context){
-          return ChatDetailPage();
+          return const ChatDetailPage();
         }));
       },
       child: SizedBox(

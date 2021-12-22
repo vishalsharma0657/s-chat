@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:s_chat/Chat_Page/mesaagechat.dart';
 class ChatDetailPage extends StatefulWidget{
+  const ChatDetailPage({Key? key}) : super(key: key);
+
   @override
   _ChatDetailPageState createState() => _ChatDetailPageState();
  
@@ -25,33 +27,34 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
         backgroundColor: Colors.white,
         flexibleSpace: SafeArea(
           child: Container(
-            padding: EdgeInsets.only(right: 16),
+            padding: const EdgeInsets.only(right: 16),
             child: Row(
               children: <Widget>[
                 IconButton(
                   onPressed: (){
                     Navigator.pop(context);
                   },
-                  icon: Icon(Icons.arrow_back,color: Colors.black,),
+                  icon: const Icon(Icons.arrow_back,color: Colors.black,),
                 ),
-                SizedBox(width: 2,),
+                const SizedBox(width: 2,),
                 CircleAvatar(
-                  backgroundImage: NetworkImage("<https://randomuser.me/api/portraits/men/5.jpg>"),
+                  child: Icon(Icons.person,color: Colors.blue[400],),
                   maxRadius: 20,
+                  
                 ),
-                SizedBox(width: 12,),
+                const SizedBox(width: 12,),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       const Text("VISHAL SHARMA",style: TextStyle( fontSize: 16 ,fontWeight: FontWeight.w600),),
-                      SizedBox(height: 6,),
+                      const SizedBox(height: 6,),
                       Text("Online",style: TextStyle(color: Colors.grey.shade600, fontSize: 13),),
                     ],
                   ),
                 ),
-                Icon(Icons.settings,color: Colors.black54,),
+                const Icon(Icons.settings,color: Colors.black54,),
               ],
             ),
           ),
@@ -62,21 +65,21 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
            ListView.builder(
             itemCount: messages.length,
             shrinkWrap: true,
-            padding: EdgeInsets.only(top: 10,bottom: 10),
-            physics: NeverScrollableScrollPhysics(),
+            padding: const EdgeInsets.only(top: 10,bottom: 10),
+            physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index){
               return Container(
                 padding: const EdgeInsets.only(left: 16,right: 16,top: 10,bottom: 10),
                  child: Align(
         alignment: (messages[index].messageType == "receiver"?Alignment.topRight:Alignment.topLeft),
         child: Container(
-        constraints: BoxConstraints(maxWidth: 250),
+        constraints: const BoxConstraints(maxWidth: 250),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: (messages[index].messageType  == "receiver"?Colors.white:Colors.blue[200]),
           ),
-          padding: EdgeInsets.all(16),
-                child: Text(messages[index].messageContent,style: TextStyle(color: Colors.black),),
+          padding: const EdgeInsets.all(16),
+                child: Text(messages[index].messageContent,style: const TextStyle(color: Colors.black),),
                 
              ),
       ),
@@ -86,7 +89,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
           Align(
             alignment: Alignment.bottomLeft,
             child: Container(
-              padding: EdgeInsets.only(left: 10,bottom: 10,top: 10),
+              padding: const EdgeInsets.only(left: 10,bottom: 10,top: 10),
               height: 60,
               width: double.infinity,
               color: Colors.white,
@@ -99,14 +102,14 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                       height: 30,
                       width: 30,
                       decoration: BoxDecoration(
-                        color: Colors.lightBlue,
+                        color: Colors.indigo[900],
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      child: Icon(Icons.add, color: Colors.white, size: 20, ),
+                      child: const Icon(Icons.add, color: Colors.white, size: 20, ),
                     ),
                   ),
-                  SizedBox(width: 15,),
-                  Expanded(
+                  const SizedBox(width: 15,),
+                  const Expanded(
                     child: TextField(
                       decoration: InputDecoration(
                         hintText: "Write message...",
@@ -116,11 +119,11 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                       style: TextStyle(color: Colors.black),
                     ),
                   ),
-                  SizedBox(width: 15,),
+                  const SizedBox(width: 15,),
                   FloatingActionButton(
                     onPressed: (){},
-                    child: Icon(Icons.send,color: Colors.white,size: 18,),
-                    backgroundColor: Colors.blue,
+                    child: const Icon(Icons.send,color: Colors.white,size: 18,),
+                    backgroundColor: Colors.indigo[900],
                     elevation: 0,
                   ),
                 ],

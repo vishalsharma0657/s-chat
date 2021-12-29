@@ -166,12 +166,13 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                   ),
                   FloatingActionButton(
                     onPressed: () async {
+                      String tt = txt;
                       setState(() {
                         msg.add('r$txt');
                         txt = '';
                         fieldText.clear();
                       });
-                      await sendMessage(txt, widget.id, usrname);
+                      await sendMessage(tt, widget.id, usrname);
                     },
                     child: const Icon(
                       Icons.send,

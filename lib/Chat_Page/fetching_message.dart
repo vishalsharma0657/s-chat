@@ -1,9 +1,10 @@
 import 'package:http/http.dart' as http;
 
-Future<http.Response> fetchMedicine(int k) async {
-  var msg = 'https://schhat.herokuapp.com/msg/$k';
+Future<http.Response> fetchMsgs(String id) async {
+  var msg = 'https://schhat.herokuapp.com/msg/$id';
   return await http.get(Uri.parse(msg));
 }
 
+List<String> msg = [];
 List<String> msg1 = [];
 List<String> msg2 = [];

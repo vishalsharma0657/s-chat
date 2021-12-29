@@ -37,7 +37,7 @@ class TxtWidget extends StatelessWidget {
   final String txt;
   final IconData ic;
   final TextInputType tp;
-  const TxtWidget(this.txt, this.ic, this.tp, {Key? key}) : super(key: key);
+  const TxtWidget(this.txt, this.ic, this.tp, {Key? key, TextEditingController controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

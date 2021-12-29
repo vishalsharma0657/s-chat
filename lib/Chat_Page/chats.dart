@@ -1,30 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:s_chat/Chat_Page/fetching_message.dart';
-import 'package:s_chat/Chat_Page/mesaagechat.dart';
+import 'package:s_chat/Chat_Page/send_message.dart';
+import 'package:s_chat/Friend_list/details_user/details.dart';
 
 class ChatDetailPage extends StatefulWidget {
   final String name;
-  const ChatDetailPage(this.name, {Key? key}) : super(key: key);
+  final String id;
+  const ChatDetailPage(this.name, this.id, {Key? key}) : super(key: key);
 
   @override
   _ChatDetailPageState createState() => _ChatDetailPageState();
 }
 
-List<ChatMessage> messages = [
-  ChatMessage(messageContent: "Hello, Nitesh", messageType: "receiver"),
-  ChatMessage(
-      messageContent: "Tumse call kiye hue kitna din ho gaya",
-      messageType: "receiver"),
-  ChatMessage(
-      messageContent:
-          "Hey Nitesh babu aisa mat bolo Hey Nitesh babu aisa mat bolo Hey Nitesh babu aisa mat bolo Hey Nitesh babu aisa mat bolo Hey Nitesh babu aisa mat bolo Hey Nitesh babu aisa mat bolo Hey Nitesh babu aisa mat bolo Hey Nitesh babu aisa mat bolo Hey Nitesh babu aisa mat bolo Hey Nitesh babu aisa mat bolo ",
-      messageType: "sender"),
-  ChatMessage(messageContent: "ehhhh, doing OK.", messageType: "receiver"),
-  ChatMessage(
-      messageContent: "Is there any thing wrong?", messageType: "sender"),
-];
-
 class _ChatDetailPageState extends State<ChatDetailPage> {
+  String txt = '';
+  final fieldText = TextEditingController();
+
+  void clearText() {
+    fieldText.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -153,20 +148,31 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                   const SizedBox(
                     width: 15,
                   ),
-                  const Expanded(
+                  Expanded(
                     child: TextField(
-                      decoration: InputDecoration(
+                      controller: fieldText,
+                      onChanged: (value) {
+                        txt = value;
+                      },
+                      decoration: const InputDecoration(
                           hintText: "Write message...",
                           hintStyle: TextStyle(color: Colors.black54),
                           border: InputBorder.none),
-                      style: TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.black),
                     ),
                   ),
                   const SizedBox(
                     width: 15,
                   ),
                   FloatingActionButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      setState(() {
+                        msg.add('r$txt');
+                        txt = '';
+                        fieldText.clear();
+                      });
+                      await sendMessage(txt, widget.id, usrname);
+                    },
                     child: const Icon(
                       Icons.send,
                       color: Colors.white,

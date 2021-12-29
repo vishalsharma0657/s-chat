@@ -6,5 +6,3 @@ Future<http.Response> fetchMsgs(String id) async {
 }
 
 List<String> msg = [];
-List<String> msg1 = [];
-List<String> msg2 = [];

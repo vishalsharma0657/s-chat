@@ -57,7 +57,8 @@ class _FriendBoxState extends State<FriendBox> {
         });
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ChatDetailPage(widget.name)),
+          MaterialPageRoute(
+              builder: (context) => ChatDetailPage(widget.name, id)),
         );
       },
       child: SizedBox(

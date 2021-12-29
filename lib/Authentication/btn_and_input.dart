@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:s_chat/Friend_list/details_user/details.dart';
 import 'package:s_chat/Friend_list/listpage.dart';
 
 class Btn extends StatelessWidget {
@@ -13,7 +16,14 @@ class Btn extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20), color: Colors.blue[900]),
       child: TextButton(
-        onPressed: () {
+        onPressed: () async {
+          var ussr = await fetchUserDetails('SunnyLeone');
+          final usr = jsonDecode(ussr.body);
+          usrname = usr['name'];
+          phoneNo = usr['phone_no'];
+          for (String k in usr['friends'].keys) {
+            friends.add(usr['friends'][k]);
+          }
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const ListPage()),
@@ -31,6 +41,8 @@ class Btn extends StatelessWidget {
       ),
     );
   }
+
+  void sendOtp(String numb) {}
 }
 
 class TxtWidget extends StatelessWidget {

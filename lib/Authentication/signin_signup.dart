@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:s_chat/Authentication/btn_and_input.dart';
 
-
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
 
@@ -33,7 +32,6 @@ class _SignInState extends State<SignIn> {
                     children: [
                       TextButton(
                         onPressed: () {
-                         
                           setState(() {
                             flag = true;
                           });
@@ -52,7 +50,6 @@ class _SignInState extends State<SignIn> {
                       ),
                       TextButton(
                         onPressed: () {
-                          
                           setState(() {
                             flag = false;
                           });
@@ -84,8 +81,7 @@ class _SignInState extends State<SignIn> {
                   const TxtWidget(
                       'OTP', Icons.confirmation_number, TextInputType.number),
                   TextButton(
-                    onPressed: () { 
-               },
+                    onPressed: () {},
                     child: const Text(
                       'Generate OTP',
                       style: TextStyle(fontSize: 16, color: Colors.pink),

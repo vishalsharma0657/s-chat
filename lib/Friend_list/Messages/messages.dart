@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:s_chat/Friend_list/Messages/box.dart';
-import 'package:s_chat/Friend_list/Messages/dummy_name.dart';
+import 'package:s_chat/Friend_list/details_user/details.dart';
 
 class Msgs extends StatelessWidget {
   const Msgs({Key? key}) : super(key: key);

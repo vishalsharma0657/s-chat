@@ -1,5 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:s_chat/Friend_list/details_user/details.dart';
 import 'package:s_chat/Friend_list/listpage.dart';
+
+String val_user = '';
+String val_phone = '';
 
 class Btn extends StatelessWidget {
   final bool flag;
@@ -13,7 +19,14 @@ class Btn extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20), color: Colors.blue[900]),
       child: TextButton(
-        onPressed: () {
+        onPressed: () async {
+          var ussr = await fetchUserDetails('SunnyLeone');
+          final usr = jsonDecode(ussr.body);
+          usrname = usr['name'];
+          phoneNo = usr['phone_no'];
+          for (String k in usr['friends'].keys) {
+            friends.add(usr['friends'][k]);
+          }
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const ListPage()),
@@ -31,17 +44,31 @@ class Btn extends StatelessWidget {
       ),
     );
   }
+
+  void sendOtp(String numb) {}
 }
 
 class TxtWidget extends StatelessWidget {
   final String txt;
   final IconData ic;
   final TextInputType tp;
-  const TxtWidget(this.txt, this.ic, this.tp, {Key? key, TextEditingController controller}) : super(key: key);
+  const TxtWidget(
+    this.txt,
+    this.ic,
+    this.tp, {
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: (value) {
+        if (txt == 'Username') {
+          val_user = value;
+        } else if (txt == 'Phone no.') {
+          val_phone = value;
+        }
+      },
       autofocus: false,
       keyboardType: tp,
       textInputAction: TextInputAction.next,

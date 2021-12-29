@@ -62,7 +62,8 @@ class _OTPScreenState extends State<OTPScreen> {
                     if (value.user != null) {
                       Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(builder: (context) =>const SignIn()),
+                          MaterialPageRoute(
+                              builder: (context) => const SignIn()),
                           (route) => false);
                     }
                   });
@@ -70,7 +71,8 @@ class _OTPScreenState extends State<OTPScreen> {
                   FocusScope.of(context).unfocus();
                   _scaffoldkey.currentState
                       // ignore: deprecated_member_use
-                      ?.showSnackBar(const SnackBar(content: Text('invalid OTP')));
+                      ?.showSnackBar(
+                          const SnackBar(content: Text('invalid OTP')));
                 }
               },
             ),
@@ -82,7 +84,7 @@ class _OTPScreenState extends State<OTPScreen> {
 
   _verifyPhone() async {
     await FirebaseAuth.instance.verifyPhoneNumber(
-        phoneNumber: '+1${widget.phone}',
+        phoneNumber: '+91${widget.phone}',
         verificationCompleted: (PhoneAuthCredential credential) async {
           await FirebaseAuth.instance
               .signInWithCredential(credential)
@@ -90,7 +92,7 @@ class _OTPScreenState extends State<OTPScreen> {
             if (value.user != null) {
               Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => Home()),
+                  MaterialPageRoute(builder: (context) => const SignIn()),
                   (route) => false);
             }
           });

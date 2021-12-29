@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:s_chat/Authentication/btn_and_input.dart';
-
+import 'package:s_chat/Authentication/otp.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -12,6 +10,7 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  TextEditingController _controller = TextEditingController();
   bool flag = false;
   @override
   Widget build(BuildContext context) {
@@ -35,7 +34,6 @@ class _SignInState extends State<SignIn> {
                     children: [
                       TextButton(
                         onPressed: () {
-                         
                           setState(() {
                             flag = true;
                           });
@@ -54,7 +52,6 @@ class _SignInState extends State<SignIn> {
                       ),
                       TextButton(
                         onPressed: () {
-                          
                           setState(() {
                             flag = false;
                           });
@@ -79,15 +76,20 @@ class _SignInState extends State<SignIn> {
               const TxtWidget(
                   'Username', Icons.account_circle, TextInputType.name),
               if (!flag)
-                const TxtWidget('Phone no.', Icons.call, TextInputType.phone),
+                const TxtWidget('Phone no.', Icons.call, TextInputType.name),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   const TxtWidget(
                       'OTP', Icons.confirmation_number, TextInputType.number),
                   TextButton(
-                    onPressed: () { 
-               },
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => OTPScreen(val_phone)),
+                      );
+                    },
                     child: const Text(
                       'Generate OTP',
                       style: TextStyle(fontSize: 16, color: Colors.pink),

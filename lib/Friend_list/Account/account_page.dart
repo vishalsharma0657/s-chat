@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:s_chat/Friend_list/details_user/details.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    int len = friends.length;
     return Center(
       child: SizedBox(
         height: 240,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: const [
-            CircleAvatar(
+          children: [
+            const CircleAvatar(
               radius: 50,
               backgroundColor: Colors.white,
               child: Icon(
@@ -21,16 +23,16 @@ class AccountPage extends StatelessWidget {
               ),
             ),
             Text(
-              'username',
-              style: TextStyle(fontSize: 22, color: Colors.white),
+              usrname,
+              style: const TextStyle(fontSize: 22, color: Colors.white),
             ),
             Text(
-              '+91-9876543210',
-              style: TextStyle(fontSize: 22, color: Colors.white),
+              phoneNo,
+              style: const TextStyle(fontSize: 22, color: Colors.white),
             ),
             Text(
-              '0  friends',
-              style: TextStyle(fontSize: 22, color: Colors.white),
+              '$len  friends',
+              style: const TextStyle(fontSize: 22, color: Colors.white),
             ),
           ],
         ),

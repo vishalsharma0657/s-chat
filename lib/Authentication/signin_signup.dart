@@ -3,6 +3,7 @@ import 'package:s_chat/Authentication/btn_and_input.dart';
 import 'package:s_chat/Chat_Page/chats.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:s_chat/Friend_list/listpage.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -159,7 +160,7 @@ void loginWithPhone() async {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => ChatDetailPage(),
+            builder: (context) => ListPage(),
           ),
         );
       },

@@ -1,33 +1,88 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:s_chat/Chat_Page/chats.dart';
-class FriendBox extends StatelessWidget {
+import 'package:s_chat/Chat_Page/fetching_message.dart';
+import 'package:s_chat/Friend_list/Friends/friends_page.dart';
+import 'package:s_chat/Friend_list/details_user/details.dart';
+
+class FriendBox extends StatefulWidget {
   final String name;
-  const FriendBox(this.name, {Key? key}) : super(key: key);
+  final bool msg;
+  const FriendBox(this.name, this.msg, {Key? key}) : super(key: key);
+
+  @override
+  State<FriendBox> createState() => _FriendBoxState();
+}
+
+class _FriendBoxState extends State<FriendBox> {
+  bool touch = false;
+  String mIN(String a, String b) {
+    int val = a.compareTo(b);
+    return val == -1 ? a : b;
+  }
+
+  String mAX(String a, String b) {
+    int val = a.compareTo(b);
+    return val == 1 ? a : b;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context){
-          return const ChatDetailPage();
-        }));
+    if (widget.msg == false) {
+      touch = false;
+    }
+    return TextButton(
+      onPressed: () async {
+        setState(() {
+          touch = !touch;
+        });
+
+        String id =
+            mIN(usrname, widget.name) + '!!!' + mAX(usrname, widget.name);
+        var mssggs = await fetchMsgs(id);
+        final msgg = jsonDecode(mssggs.body);
+        String z = 'l';
+        msg.clear();
+        for (String k in msgg['msgs'].keys) {
+          if (usrname == mIN(usrname, widget.name)) {
+            z = k[0] == 'b' ? 'l' : 'r';
+          } else {
+            z = k[0] == 'a' ? 'l' : 'r';
+          }
+          msg.add(z + msgg['msgs'][k]);
+        }
+        setState(() {
+          touch = !touch;
+        });
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => ChatDetailPage(widget.name, id)),
+        );
       },
       child: SizedBox(
+        width: double.infinity,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Padding(
-              padding: EdgeInsets.all(20.0),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
               child: Icon(
                 Icons.account_circle,
-                color: Colors.white,
+                color: touch ? Colors.red : Colors.white,
                 size: 60,
               ),
             ),
             Text(
-              name,
-              style: const TextStyle(fontSize: 20, color: Colors.white),
-            )
+              widget.name,
+              style: TextStyle(
+                  fontSize: 20, color: touch ? Colors.red : Colors.white),
+            ),
+            const SizedBox(
+              width: 40,
+            ),
+            if (touch) spinner()
           ],
         ),
       ),

@@ -36,7 +36,7 @@ class Msgs extends StatelessWidget {
             physics: const ClampingScrollPhysics(),
             itemCount: friends.length,
             itemBuilder: (context, index) {
-              return FriendBox(friends[index]);
+              return FriendBox(friends[index], true);
             },
           ),
         ),

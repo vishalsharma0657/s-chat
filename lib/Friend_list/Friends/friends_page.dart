@@ -97,7 +97,7 @@ class _FriendsPageState extends State<FriendsPage> {
               padding: const EdgeInsets.all(0),
               itemCount: friends.length,
               itemBuilder: (context, index) {
-                return FriendBox(friends[index]);
+                return FriendBox(friends[index], false);
               },
             ),
           )

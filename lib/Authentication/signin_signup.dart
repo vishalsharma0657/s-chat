@@ -4,6 +4,9 @@ import 'package:s_chat/Chat_Page/chats.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:s_chat/Friend_list/listpage.dart';
+import 'package:s_chat/Friend_list/details_user/details.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'dart:convert';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -15,11 +18,12 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   TextEditingController otpController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
+  TextEditingController userController = new TextEditingController();
   bool flag = false;
   FirebaseAuth auth = FirebaseAuth.instance;
 
   bool otpVisibility = false;
-
+  var f = 1;
   String verificationID = "";
   @override
   Widget build(BuildContext context) {
@@ -85,8 +89,9 @@ class _SignInState extends State<SignIn> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  const TextField(
-                   
+                  TextField(
+                    controller: userController,
+                    obscureText: true,
                     decoration: InputDecoration(labelText: "User name"),
                     keyboardType: TextInputType.text,
                   ),
@@ -96,13 +101,37 @@ class _SignInState extends State<SignIn> {
                     keyboardType: TextInputType.phone,
                   ),
                   TextField(
-                    controller: otpController,
-                    decoration: InputDecoration(labelText: "OTP"),
-                    keyboardType: TextInputType.number
-                  ),
+                      controller: otpController,
+                      decoration: const InputDecoration(labelText: "OTP"),
+                      keyboardType: TextInputType.number),
                   TextButton(
-                    onPressed: () {
-                    loginWithPhone();
+                    onPressed: () async {
+                      setState(() {
+                        flag = true;
+                      });
+                      var msgg = await checkuser(
+                          userController.text, phoneController.text);
+                      var msgz = jsonDecode(msgg.body);
+                      var lmsg = msgz['result'];
+                      print(lmsg);
+                      print(msgz);
+
+                      if (lmsg == "old bakra") {
+                        loginWithPhone();
+                      } else if (lmsg == "new bakra") {
+                        f = 2;
+                        loginWithPhone();
+                      } else {
+                        Fluttertoast.showToast(
+                          msg: lmsg,
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.CENTER,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.red,
+                          textColor: Colors.white,
+                          fontSize: 16.0,
+                        );
+                      }
                     },
                     child: const Text(
                       'Generate OTP',
@@ -111,14 +140,15 @@ class _SignInState extends State<SignIn> {
                   ),
                 ],
               ),
-              TextButton(onPressed: verifyOTP, child: Text("VERIFY"))
+              TextButton(onPressed: verifyOTP, child: const Text("VERIFY"))
             ],
           ),
         ),
       ),
     );
   }
-void loginWithPhone() async {
+
+  void loginWithPhone() async {
     auth.verifyPhoneNumber(
       phoneNumber: "+91" + phoneController.text,
       verificationCompleted: (PhoneAuthCredential credential) async {
@@ -154,16 +184,26 @@ void loginWithPhone() async {
           textColor: Colors.white,
           fontSize: 16.0,
         );
-      },
-    ).whenComplete(
-      () {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ListPage(),
-          ),
-        );
+        addUser(phoneController.text, userController.text);
+         usrname = userController.text;
+        navigation();
       },
     );
+  }
+
+  navigation() async {
+    var ussr = await fetchUserDetails(userController.text);
+    final usr = jsonDecode(ussr.body);
+    usrname = usr['name'];
+    phoneNo = usr['phone_no'];
+    for (String k in usr['friends'].keys) {
+      friends.add(usr['friends'][k]);
+    }
+   
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ListPage(userController.text),
+        ));
   }
 }

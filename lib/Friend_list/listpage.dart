@@ -5,7 +5,8 @@ import 'package:s_chat/Friend_list/Friends/friends_page.dart';
 import 'package:s_chat/Friend_list/Messages/messages.dart';
 
 class ListPage extends StatefulWidget {
-  const ListPage({Key? key}) : super(key: key);
+  final String userinput;
+  const ListPage(this.userinput,{Key? key}) : super(key: key);
 
   @override
   State<ListPage> createState() => _ListPageState();

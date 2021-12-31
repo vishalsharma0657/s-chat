@@ -41,6 +41,8 @@ dependencies:
   pinput: ^1.2.2
   firebase_auth: ^3.3.3
   firebase_core: ^1.10.5
+  authentication_provider: ^1.0.1
+  provider: ^6.0.2
 
 
 dev_dependencies:

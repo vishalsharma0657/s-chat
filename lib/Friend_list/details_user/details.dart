@@ -6,6 +6,37 @@ Future<http.Response> fetchUserDetails(String username) async {
   return await http.get(Uri.parse(wwe));
 }
 
+Future<http.Response> getUser(String username) async {
+  var wwe = 'https://schhat.herokuapp.com/user/$username';
+  return await http.get(Uri.parse(wwe));
+}
+
+Future<http.Response> checkuser(String username, String phone_no) async {
+  return http.post(
+    Uri.parse('https://schhat.herokuapp.com/auth'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'name': username,
+      'phone_no': phone_no,
+    }),
+  );
+}
+
+Future<http.Response> addUser(String val1, String username1) {
+  return http.post(
+    Uri.parse('https://schhat.herokuapp.com/addUser'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'name': username1,
+      'phone_no': val1,
+    }),
+  );
+}
+
 Future<http.Response> addFriend(String val, String username) {
   return http.post(
     Uri.parse('https://schhat.herokuapp.com/addFriend/$username'),

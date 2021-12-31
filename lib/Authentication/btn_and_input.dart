@@ -1,8 +1,11 @@
 import 'dart:convert';
-
+import 'package:s_chat/Authentication/btn_and_input.dart';
 import 'package:flutter/material.dart';
 import 'package:s_chat/Friend_list/details_user/details.dart';
 import 'package:s_chat/Friend_list/listpage.dart';
+
+String val_user = '';
+String val_phone = '';
 
 class Btn extends StatelessWidget {
   final bool flag;
@@ -49,11 +52,23 @@ class TxtWidget extends StatelessWidget {
   final String txt;
   final IconData ic;
   final TextInputType tp;
-  const TxtWidget(this.txt, this.ic, this.tp, {Key? key}) : super(key: key);
+  const TxtWidget(
+    this.txt,
+    this.ic,
+    this.tp, {
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: (value) {
+        if (txt == 'Username') {
+          val_user = value;
+        } else if (txt == 'Phone no.') {
+          val_phone = value;
+        }
+      },
       autofocus: false,
       keyboardType: tp,
       textInputAction: TextInputAction.next,

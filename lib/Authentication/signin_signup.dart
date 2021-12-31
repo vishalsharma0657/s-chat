@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:s_chat/Authentication/btn_and_input.dart';
+import 'package:s_chat/Chat_Page/chats.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:s_chat/Friend_list/listpage.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -9,7 +13,14 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  TextEditingController otpController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
   bool flag = false;
+  FirebaseAuth auth = FirebaseAuth.instance;
+
+  bool otpVisibility = false;
+
+  String verificationID = "";
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -71,17 +82,28 @@ class _SignInState extends State<SignIn> {
                   ),
                 ],
               ),
-              const TxtWidget(
-                  'Username', Icons.account_circle, TextInputType.name),
-              if (!flag)
-                const TxtWidget('Phone no.', Icons.call, TextInputType.phone),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  const TxtWidget(
-                      'OTP', Icons.confirmation_number, TextInputType.number),
+                  const TextField(
+                   
+                    decoration: InputDecoration(labelText: "User name"),
+                    keyboardType: TextInputType.text,
+                  ),
+                  TextField(
+                    controller: phoneController,
+                    decoration: InputDecoration(labelText: "Phone number"),
+                    keyboardType: TextInputType.phone,
+                  ),
+                  TextField(
+                    controller: otpController,
+                    decoration: InputDecoration(labelText: "OTP"),
+                    keyboardType: TextInputType.number
+                  ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                    loginWithPhone();
+                    },
                     child: const Text(
                       'Generate OTP',
                       style: TextStyle(fontSize: 16, color: Colors.pink),
@@ -89,11 +111,59 @@ class _SignInState extends State<SignIn> {
                   ),
                 ],
               ),
-              Btn(flag),
+              TextButton(onPressed: verifyOTP, child: Text("VERIFY"))
             ],
           ),
         ),
       ),
+    );
+  }
+void loginWithPhone() async {
+    auth.verifyPhoneNumber(
+      phoneNumber: "+91" + phoneController.text,
+      verificationCompleted: (PhoneAuthCredential credential) async {
+        await auth.signInWithCredential(credential).then((value) {
+          print("You are logged in successfully");
+        });
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        print(e.message);
+      },
+      codeSent: (String verificationId, int? resendToken) {
+        otpVisibility = true;
+        verificationID = verificationId;
+        setState(() {});
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {},
+    );
+  }
+
+  void verifyOTP() async {
+    PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: verificationID, smsCode: otpController.text);
+
+    await auth.signInWithCredential(credential).then(
+      (value) {
+        print("You are logged in successfully");
+        Fluttertoast.showToast(
+          msg: "You are logged in successfully",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
+      },
+    ).whenComplete(
+      () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ListPage(),
+          ),
+        );
+      },
     );
   }
 }

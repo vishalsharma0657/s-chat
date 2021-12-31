@@ -117,40 +117,42 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
           ),
         ),
       ),
-      body: Stack(
+      body: Column(
         children: <Widget>[
-          SingleChildScrollView(
-            child: ListView.builder(
-              // reverse: true,
-              itemCount: msg.length,
-              shrinkWrap: true,
-              padding: const EdgeInsets.only(top: 10, bottom: 10),
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) {
-                return Container(
-                  padding: const EdgeInsets.only(
-                      left: 16, right: 16, top: 10, bottom: 10),
-                  child: Align(
-                    alignment: (msg[index][0] == "r"
-                        ? Alignment.topRight
-                        : Alignment.topLeft),
-                    child: Container(
-                      constraints: const BoxConstraints(maxWidth: 250),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: (msg[index][0] == "r"
-                            ? Colors.white
-                            : Colors.blue[200]),
-                      ),
-                      padding: const EdgeInsets.all(16),
-                      child: Text(
-                        msg[index].substring(1),
-                        style: const TextStyle(color: Colors.black),
+          Expanded(
+            child: SingleChildScrollView(
+              child: ListView.builder(
+                // reverse: true,
+                itemCount: msg.length,
+                shrinkWrap: true,
+                padding: const EdgeInsets.only(top: 10, bottom: 10),
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return Container(
+                    padding: const EdgeInsets.only(
+                        left: 16, right: 16, top: 10, bottom: 10),
+                    child: Align(
+                      alignment: (msg[index][0] == "r"
+                          ? Alignment.topRight
+                          : Alignment.topLeft),
+                      child: Container(
+                        constraints: const BoxConstraints(maxWidth: 250),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: (msg[index][0] == "r"
+                              ? Colors.white
+                              : Colors.blue[200]),
+                        ),
+                        padding: const EdgeInsets.all(16),
+                        child: Text(
+                          msg[index].substring(1),
+                          style: const TextStyle(color: Colors.black),
+                        ),
                       ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
           ),
           Align(

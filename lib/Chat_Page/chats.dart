@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:s_chat/Chat_Page/fetching_message.dart';
 import 'package:s_chat/Chat_Page/send_message.dart';
@@ -15,9 +18,37 @@ class ChatDetailPage extends StatefulWidget {
 class _ChatDetailPageState extends State<ChatDetailPage> {
   String txt = '';
   final fieldText = TextEditingController();
+  Timer? timer;
 
-  void clearText() {
-    fieldText.clear();
+  @override
+  void initState() {
+    super.initState();
+    timer = Timer.periodic(const Duration(seconds: 2), (timer) async {
+      String id = mIN(usrname, widget.name) + '!!!' + mAX(usrname, widget.name);
+      var mssggs = await fetchMsgs(id);
+      final msgg = jsonDecode(mssggs.body);
+      String z = 'l';
+      tempMsg.clear();
+      for (String k in msgg['msgs'].keys) {
+        if (usrname == mIN(usrname, widget.name)) {
+          z = k[0] == 'b' ? 'l' : 'r';
+        } else {
+          z = k[0] == 'a' ? 'l' : 'r';
+        }
+        tempMsg.add(z + msgg['msgs'][k]);
+      }
+      if (tempMsg != msg) {
+        setState(() {
+          msg = tempMsg;
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
   }
 
   @override
@@ -86,39 +117,43 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
           ),
         ),
       ),
-      body: Stack(
+      body: Column(
         children: <Widget>[
-          ListView.builder(
-            // reverse: true,
-            itemCount: msg.length,
-            shrinkWrap: true,
-            padding: const EdgeInsets.only(top: 10, bottom: 10),
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              return Container(
-                padding: const EdgeInsets.only(
-                    left: 16, right: 16, top: 10, bottom: 10),
-                child: Align(
-                  alignment: (msg[index][0] == "r"
-                      ? Alignment.topRight
-                      : Alignment.topLeft),
-                  child: Container(
-                    constraints: const BoxConstraints(maxWidth: 250),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: (msg[index][0] == "r"
-                          ? Colors.white
-                          : Colors.blue[200]),
+          Expanded(
+            child: SingleChildScrollView(
+              child: ListView.builder(
+                // reverse: true,
+                itemCount: msg.length,
+                shrinkWrap: true,
+                padding: const EdgeInsets.only(top: 10, bottom: 10),
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return Container(
+                    padding: const EdgeInsets.only(
+                        left: 16, right: 16, top: 10, bottom: 10),
+                    child: Align(
+                      alignment: (msg[index][0] == "r"
+                          ? Alignment.topRight
+                          : Alignment.topLeft),
+                      child: Container(
+                        constraints: const BoxConstraints(maxWidth: 250),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: (msg[index][0] == "r"
+                              ? Colors.white
+                              : Colors.blue[200]),
+                        ),
+                        padding: const EdgeInsets.all(16),
+                        child: Text(
+                          msg[index].substring(1),
+                          style: const TextStyle(color: Colors.black),
+                        ),
+                      ),
                     ),
-                    padding: const EdgeInsets.all(16),
-                    child: Text(
-                      msg[index].substring(1),
-                      style: const TextStyle(color: Colors.black),
-                    ),
-                  ),
-                ),
-              );
-            },
+                  );
+                },
+              ),
+            ),
           ),
           Align(
             alignment: Alignment.bottomLeft,
@@ -190,4 +225,14 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
       ),
     );
   }
+}
+
+String mIN(String a, String b) {
+  int val = a.compareTo(b);
+  return val == -1 ? a : b;
+}
+
+String mAX(String a, String b) {
+  int val = a.compareTo(b);
+  return val == 1 ? a : b;
 }

@@ -17,7 +17,7 @@ class Btn extends StatelessWidget {
           borderRadius: BorderRadius.circular(20), color: Colors.blue[900]),
       child: TextButton(
         onPressed: () async {
-          var ussr = await fetchUserDetails('SunnyLeone');
+          var ussr = await fetchUserDetails('LanaRhodes');
           final usr = jsonDecode(ussr.body);
           usrname = usr['name'];
           phoneNo = usr['phone_no'];

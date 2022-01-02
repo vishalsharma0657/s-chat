@@ -5,8 +5,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:s_chat/Friend_list/listpage.dart';
 import 'package:s_chat/Friend_list/details_user/details.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -16,12 +18,36 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+
+
   TextEditingController otpController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController userController = new TextEditingController();
   bool flag = false;
-  FirebaseAuth auth = FirebaseAuth.instance;
+  bool isLoggedIn = false;
+  String name = '';
 
+  FirebaseAuth auth = FirebaseAuth.instance;
+  
+   @override
+  void initState() {
+    super.initState();
+    autoLogIn();
+  }
+  void autoLogIn() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? userId = prefs.getString('name');
+
+    if (userId != null) {
+      setState(() {
+        isLoggedIn = true;
+        name = userId;
+      });
+      return;
+    }
+  }
+
+  
   bool otpVisibility = false;
   var f = 1;
   String verificationID = "";
@@ -171,9 +197,10 @@ class _SignInState extends State<SignIn> {
   void verifyOTP() async {
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
         verificationId: verificationID, smsCode: otpController.text);
-
+    print(credential);
+    
     await auth.signInWithCredential(credential).then(
-      (value) {
+      (value) async {
         print("You are logged in successfully");
         Fluttertoast.showToast(
           msg: "You are logged in successfully",
@@ -184,22 +211,32 @@ class _SignInState extends State<SignIn> {
           textColor: Colors.white,
           fontSize: 16.0,
         );
-        addUser(phoneController.text, userController.text);
-         usrname = userController.text;
+        await addUser(phoneController.text, userController.text);
+        usrname = userController.text;
+         final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('name', userController.text);
+
+    setState(() {
+      name = userController.text;
+      isLoggedIn = true;
+    });
+
+    userController.clear();
         navigation();
       },
     );
   }
 
   navigation() async {
-    var ussr = await fetchUserDetails(userController.text);
+    var ussr = await fetchUserDetails(usrname);
+     
     final usr = jsonDecode(ussr.body);
     usrname = usr['name'];
     phoneNo = usr['phone_no'];
     for (String k in usr['friends'].keys) {
       friends.add(usr['friends'][k]);
     }
-   
+
     Navigator.push(
         context,
         MaterialPageRoute(

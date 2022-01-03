@@ -29,23 +29,7 @@ class _SignInState extends State<SignIn> {
 
   FirebaseAuth auth = FirebaseAuth.instance;
   
-   @override
-  void initState() {
-    super.initState();
-    autoLogIn();
-  }
-  void autoLogIn() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String? userId = prefs.getString('name');
-
-    if (userId != null) {
-      setState(() {
-        isLoggedIn = true;
-        name = userId;
-      });
-      return;
-    }
-  }
+  
 
   
   bool otpVisibility = false;
@@ -213,14 +197,9 @@ class _SignInState extends State<SignIn> {
         );
         await addUser(phoneController.text, userController.text);
         usrname = userController.text;
-         final SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('name', userController.text);
+       
 
-    setState(() {
-      name = userController.text;
-      isLoggedIn = true;
-    });
-
+   
     userController.clear();
         navigation();
       },

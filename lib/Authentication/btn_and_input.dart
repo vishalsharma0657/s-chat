@@ -1,11 +1,10 @@
 import 'dart:convert';
-import 'package:s_chat/Authentication/btn_and_input.dart';
 import 'package:flutter/material.dart';
 import 'package:s_chat/Friend_list/details_user/details.dart';
 import 'package:s_chat/Friend_list/listpage.dart';
 
-String val_user = '';
-String val_phone = '';
+String valUser = '';
+String valPhone = '';
 
 class Btn extends StatelessWidget {
   final bool flag;
@@ -29,7 +28,8 @@ class Btn extends StatelessWidget {
           }
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => ListPage('SunnyLeone')),
+            MaterialPageRoute(
+                builder: (context) => const ListPage('SunnyLeone')),
           );
         },
         child: Row(
@@ -64,9 +64,9 @@ class TxtWidget extends StatelessWidget {
     return TextFormField(
       onChanged: (value) {
         if (txt == 'Username') {
-          val_user = value;
+          valUser = value;
         } else if (txt == 'Phone no.') {
-          val_phone = value;
+          valPhone = value;
         }
       },
       autofocus: false,

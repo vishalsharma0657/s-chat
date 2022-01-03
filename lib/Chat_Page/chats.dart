@@ -23,7 +23,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
   @override
   void initState() {
     super.initState();
-    timer = Timer.periodic(const Duration(seconds: 2), (timer) async {
+    timer = Timer.periodic(const Duration(milliseconds: 300), (timer) async {
       String id = mIN(usrname, widget.name) + '!!!' + mAX(usrname, widget.name);
       var mssggs = await fetchMsgs(id);
       final msgg = jsonDecode(mssggs.body);
@@ -37,11 +37,8 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
         }
         tempMsg.add(z + msgg['msgs'][k]);
       }
-      if (tempMsg != msg) {
-        setState(() {
-          msg = tempMsg;
-        });
-      }
+      msg = tempMsg;
+      setState(() {});
     });
   }
 
@@ -53,6 +50,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    // pepcoding();
     return Scaffold(
       appBar: AppBar(
         elevation: 0,

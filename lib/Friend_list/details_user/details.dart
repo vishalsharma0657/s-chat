@@ -11,7 +11,7 @@ Future<http.Response> getUser(String username) async {
   return await http.get(Uri.parse(wwe));
 }
 
-Future<http.Response> checkuser(String username, String phone_no) async {
+Future<http.Response> checkuser(String username, String phoneNo) async {
   return http.post(
     Uri.parse('https://schhat.herokuapp.com/auth'),
     headers: <String, String>{
@@ -19,7 +19,7 @@ Future<http.Response> checkuser(String username, String phone_no) async {
     },
     body: jsonEncode(<String, String>{
       'name': username,
-      'phone_no': phone_no,
+      'phone_no': phoneNo,
     }),
   );
 }

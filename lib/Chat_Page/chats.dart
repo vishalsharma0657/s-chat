@@ -23,7 +23,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
   @override
   void initState() {
     super.initState();
-    timer = Timer.periodic(const Duration(milliseconds: 300), (timer) async {
+    timer = Timer.periodic(const Duration(milliseconds: 3), (timer) async {
       String id = mIN(usrname, widget.name) + '!!!' + mAX(usrname, widget.name);
       var mssggs = await fetchMsgs(id);
       final msgg = jsonDecode(mssggs.body);
@@ -38,6 +38,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
         tempMsg.add(z + msgg['msgs'][k]);
       }
       msg = tempMsg;
+      
       setState(() {});
     });
   }
@@ -120,7 +121,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
           Expanded(
             child: SingleChildScrollView(
               child: ListView.builder(
-                // reverse: true,
+                 reverse: true,
                 itemCount: msg.length,
                 shrinkWrap: true,
                 padding: const EdgeInsets.only(top: 10, bottom: 10),

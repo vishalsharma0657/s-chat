@@ -352,6 +352,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.4"
+  rwa_deep_ar:
+    dependency: "direct main"
+    description:
+      name: rwa_deep_ar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.12"
   shared_preferences:
     dependency: "direct main"
     description:

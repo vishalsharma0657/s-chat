@@ -28,7 +28,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
       var mssggs = await fetchMsgs(id);
       final msgg = jsonDecode(mssggs.body);
       String z = 'l';
-      tempMsg.clear();
+     
       for (String k in msgg['msgs'].keys) {
         if (usrname == mIN(usrname, widget.name)) {
           z = k[0] == 'b' ? 'l' : 'r';

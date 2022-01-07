@@ -15,7 +15,7 @@ All you need is your phone number, user name to get started with. You can quickl
     • Express yourself with Lenses, Filters, Bitmoji and more!
     •Try out new Lenses created daily by the S_Chat community.
      
-    ![](https://github.com/vishalsharma0657/s_chat.git/images/AR1.jpeg)
+    ![[](https://github.com/vishalsharma0657/s_chat.git/images/AR1.jpeg)]
     ![This is an image](https://github.com/vishalsharma0657/s_chat.git/images/AR3.jpeg)
 
 

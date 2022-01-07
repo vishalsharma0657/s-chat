@@ -16,8 +16,7 @@ All you need is your phone number, user name to get started with. You can quickl
     •Try out new Lenses created daily by the S_Chat community.
      
 ![](./images/AR1.jpeg)
-![This is an image](https://github.com/vishalsharma0657/s_chat.git/images/AR3.jpeg)
-
+![This is an image](./images/AR3.jpeg)
 
 ## Tech
 

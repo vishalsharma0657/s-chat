@@ -3,9 +3,11 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:s_chat/Friend_list/Account/account_page.dart';
 import 'package:s_chat/Friend_list/Friends/friends_page.dart';
 import 'package:s_chat/Friend_list/Messages/messages.dart';
+import 'package:s_chat/Friend_list/camera.dart';
 
 class ListPage extends StatefulWidget {
-  const ListPage({Key? key}) : super(key: key);
+  final String userinput;
+  const ListPage(this.userinput,{Key? key}) : super(key: key);
 
   @override
   State<ListPage> createState() => _ListPageState();
@@ -13,7 +15,7 @@ class ListPage extends StatefulWidget {
 
 class _ListPageState extends State<ListPage> {
   int _selectedIndex = 0;
-  List<Widget> ls = const [Msgs(), FriendsPage(), AccountPage()];
+  List<Widget> ls = const [Msgs(), FriendsPage(),MyApp(), AccountPage()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,6 +39,11 @@ class _ListPageState extends State<ListPage> {
             BottomNavyBarItem(
                 icon: const Icon(Icons.people),
                 title: const Text('Friends'),
+                inactiveColor: Colors.grey,
+                activeColor: Colors.blue),
+            BottomNavyBarItem(
+                icon: const Icon(Icons.camera),
+                title: const Text('Camera'),
                 inactiveColor: Colors.grey,
                 activeColor: Colors.blue),
             BottomNavyBarItem(

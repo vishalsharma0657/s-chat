@@ -32,6 +32,7 @@ class Msgs extends StatelessWidget {
         Expanded(
           flex: 4,
           child: ListView.builder(
+            
             padding: EdgeInsets.zero,
             physics: const ClampingScrollPhysics(),
             itemCount: friends.length,

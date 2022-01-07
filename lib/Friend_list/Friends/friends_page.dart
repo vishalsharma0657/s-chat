@@ -62,7 +62,7 @@ class _FriendsPageState extends State<FriendsPage> {
                       var msgz = jsonDecode(msgg.body);
                       var lmsg = msgz['result'];
 
-                      var ussr = await fetchUserDetails('SunnyLeone');
+                      var ussr = await fetchUserDetails(usrname);
                       final usr = jsonDecode(ussr.body);
                       usrname = usr['name'];
                       phoneNo = usr['phone_no'];

@@ -15,9 +15,9 @@ All you need is your phone number, user name to get started with. You can quickl
     • Express yourself with Lenses, Filters, Bitmoji and more!
     •Try out new Lenses created daily by the S_Chat community.
      
-![](./images/AR1.jpeg | width=100)
-![](./images/AR2.jpeg | width=100) 
-![This is an image](./images/AR3.jpeg | width=100)
+![](./images/AR1.jpeg | height=100)
+![](./images/AR2.jpeg | height=100) 
+![This is an image](./images/AR3.jpeg | height=100)
 
 ## Tech
 

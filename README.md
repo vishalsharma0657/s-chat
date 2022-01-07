@@ -35,7 +35,7 @@ And of course S_Chat itself is open source with a [public repository][dill]
 
 Download from here -->  [S_Chat](https://drive.google.com/file/d/1NsfF_Ez4ZH7Yp57uyiypIXuqulxy8MY5/view?usp=sharing)
 
-Install
-MinSdkVersion 26
+
+MinSdkVersion 26,
 TargetSdkVersion 29
 

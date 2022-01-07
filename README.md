@@ -6,7 +6,7 @@
 
 S_Chat from Team Noob is a FREE messaging with inbuilt AR technology. It’s simple, reliable, and private, so you can easily keep in touch with your friends and family. S_Chat works across mobile even on slow connections, with no subscription fees*.
 ![](./images/add_friend.jpeg)
-![](./images/ENCRYPTED_MESSAGES.jpeg)
+![](./images/ENCRYPTED_MESSAGES.png)
 ## Features
 
 Your personal messages to friends and family are end-to-end encrypted. No one outside of your chats, not even S_Chat, can read or listen to them.

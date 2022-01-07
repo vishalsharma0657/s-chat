@@ -3,11 +3,8 @@ import 'package:rwa_deep_ar/rwa_deep_ar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-
-
 const apikey =
     "1cc390c3b9883742eea0d739ad9cbd8b1485e8fb13a554963ba20b9f5755cb23ac2aa8c540b49222";
-
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -17,7 +14,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  
   late CameraDeepArController cameraDeepArController;
   int currentPage = 0;
   final vp = PageController(viewportFraction: .24);
@@ -55,8 +51,7 @@ class _MyAppState extends State<MyApp> {
                 },
                 //Enter the App key generate from Deep AR
                 androidLicenceKey:
-                "1cc390c3b9883742eea0d739ad9cbd8b1485e8fb13a554963ba20b9f5755cb23ac2aa8c540b49222",
-                
+                    "1cc390c3b9883742eea0d739ad9cbd8b1485e8fb13a554963ba20b9f5755cb23ac2aa8c540b49222",
                 cameraDeepArCallback: (c) async {
                   cameraDeepArController = c;
                   setState(() {});
@@ -87,15 +82,15 @@ class _MyAppState extends State<MyApp> {
                                 height: active ? 50 : 40,
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
-                                    color:
-                                    active ? Colors.green : Colors.white,
+                                    color: active ? Colors.green : Colors.white,
                                     shape: BoxShape.circle),
                                 child: Text(
                                   "$p",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       fontSize: active ? 16 : 14,
-                                      color: Colors.black, fontWeight: FontWeight.w800),
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w800),
                                 )),
                           );
                         }),

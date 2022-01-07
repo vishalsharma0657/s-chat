@@ -14,9 +14,9 @@ All you need is your phone number, user name to get started with. You can quickl
     • S_Chat opens straight to the camera — just tap to take a photo .
     • Express yourself with Lenses, Filters, Bitmoji and more!
     •Try out new Lenses created daily by the S_Chat community.
-
-    ![This is an image 1](images/AR1.jpeg)
-    ![This is an image](./images/AR3.jpeg)
+     
+    ![This is an image 1](https://github.com/vishalsharma0657/s_chat.git/images/AR1.jpeg)
+    ![This is an image]((https://github.com/vishalsharma0657/s_chat.git/images/AR3.jpeg)
 
 
 ## Tech

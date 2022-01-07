@@ -1,16 +1,41 @@
-# s_chat
+# S_CHAT
+## secure | smart | safe
 
-A new Flutter project.
+![Python](https://img.shields.io/badge/Python-3.9-blueviolet)
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+S_Chat from Team Noob is a FREE messaging with inbuilt AR technology. It’s simple, reliable, and private, so you can easily keep in touch with your friends and family. S_Chat works across mobile even on slow connections, with no subscription fees*.
+![](./images/add_friend.jpeg)
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+Your personal messages to friends and family are end-to-end encrypted. No one outside of your chats, not even S_Chat, can read or listen to them.
+All you need is your phone number, user name to get started with. You can quickly view your friends who are on S_Chat and start messaging.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+    • S_Chat opens straight to the camera — just tap to take a photo .
+    • Express yourself with Lenses, Filters, Bitmoji and more!
+    •Try out new Lenses created daily by the S_Chat community.
+     
+![](./images/AR1.jpeg)
+![](./images/AR2.jpeg) 
+![This is an image](./images/AR3.jpeg)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Tech
+
+Team Noob uses a number of open source projects to work properly:
+
+- [Flutter] - version 2.8.0 framework for android apps!
+- [[Django](https://github.com/vishalsharma0657/schat-backend.git)] - Django provides fast and secure backend.
+- [Fire_Base] - Fire_base provides one time password for verification in S_Chat application.
+- [Mongo_DB] - Mongo_db provides database to the application for storing messages and user detail in encrypted format.
+
+And of course S_Chat itself is open source with a [public repository][dill]
+ on GitHub.
+
+## Setup
+
+Download from here -->  [S_Chat](https://drive.google.com/file/d/1NsfF_Ez4ZH7Yp57uyiypIXuqulxy8MY5/view?usp=sharing)
+
+
+MinSdkVersion 26,
+TargetSdkVersion 29
+

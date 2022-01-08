@@ -1,12 +1,32 @@
 # S_CHAT
 ## secure | smart | safe
 
-![Python](https://img.shields.io/badge/Python-3.9-blueviolet)
-
 
 S_Chat from Team Noob is a FREE messaging with inbuilt AR technology. It’s simple, reliable, and private, so you can easily keep in touch with your friends and family. S_Chat works across mobile even on slow connections, with no subscription fees*.
 ![](./images/add_friend.jpeg)
 ![](./images/ENCRYPTED_MESSAGES.png)
+
+## Details
+##### Team Name 
+Team_Noob
+##### Domain of our project 
+Highly secure chatting application with inbuilt Augmented reality features.
+##### Idea 
+It’s simple, reliable, and secure, so you can easily keep in touch with your friends and family ,click pictures with cool effects.
+##### Achievements 
+• Successfully linked fire base OTP authentication with Mongo DB database in our flutter chatting application.
+• Added feature of capturing pictures with cool effects (Augmented reality).
+• Created API for adding and removing friends in django backend.
+• Created user interface for our chatting application in FLUTTER framework.
+• Used API for performing various task in flutter frontend.
+   1. Adding friends
+   2. Searching friends
+   3. Sending and Receiving messages
+  
+• Created  NO SQL database for storing messages (Mongo_DB).
+• Storing messages in encrypted format using Fernet (symmetric encryption).
+
+
 ## Features
 
 Your personal messages to friends and family are end-to-end encrypted. No one outside of your chats, not even S_Chat, can read or listen to them.
